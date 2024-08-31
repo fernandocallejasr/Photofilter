@@ -23,16 +23,14 @@ struct ContentView: View {
         NavigationStack {
             VStack {
                 Spacer()
-                
-                PhotosPicker(selection: $photoPickerItem) {
-                    if let processedImage {
-                        processedImage
-                            .resizable()
-                            .scaledToFit()
-                    } else {
-                        ContentUnavailableView {
-                            Label("No Image", systemImage: "photo.circle")
-                        }
+
+                if let processedImage {
+                    processedImage
+                        .resizable()
+                        .scaledToFit()
+                } else {
+                    ContentUnavailableView {
+                        Label("No Image", systemImage: "photo.circle")
                     }
                 }
                 
@@ -47,6 +45,7 @@ struct ContentView: View {
                 
                 HStack {
                     Button("Change Filter", action: changeFilter)
+                        .buttonStyle(.borderedProminent)
                     
                     Spacer()
                     
@@ -55,10 +54,8 @@ struct ContentView: View {
                 .padding(.vertical)
                 
                 PhotosPicker(selection: $photoPickerItem) {
-                    Label("Please select an image", systemImage: "camera.macro.circle")
-                        .font(.title3)
+                    Label("Select image", systemImage: "camera.macro.circle")
                 }
-                .tint(.primary)
             }
             .padding([.horizontal, .bottom])
             .onChange(of: photoPickerItem, loadImage)
@@ -78,9 +75,6 @@ struct ContentView: View {
     
     func loadImage() {
         Task {
-            guard let selectedImage = try await photoPickerItem?.loadTransferable(type: Image.self) else { return }
-            processedImage = selectedImage
-            
             guard let selectedImageData = try await photoPickerItem?.loadTransferable(type: Data.self) else { return }
             guard let inputImage = UIImage(data: selectedImageData) else { return }
             
