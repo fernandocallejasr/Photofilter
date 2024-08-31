@@ -20,6 +20,7 @@ struct ContentView: View {
         }
     }
     
+    @State private var inputUIImage: UIImage?
     @State private var processedImage: Image?
     @State private var filterIntensity = 0.5
     @State private var photoPickerItem: PhotosPickerItem?
@@ -88,6 +89,7 @@ struct ContentView: View {
         Task {
             guard let selectedImageData = try await photoPickerItem?.loadTransferable(type: Data.self) else { return }
             guard let inputImage = UIImage(data: selectedImageData) else { return }
+            inputUIImage = inputImage
             
             let beginImage = CIImage(image: inputImage)
             currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
@@ -97,6 +99,8 @@ struct ContentView: View {
     }
     
     func applyProcessing() {
+        guard let inputUIImage = inputUIImage else { return }
+        
         let inputKeys = currentFilter.inputKeys
         
         if inputKeys.contains(kCIInputIntensityKey) { currentFilter.setValue(filterIntensity, forKey: kCIInputIntensityKey) }
@@ -106,7 +110,7 @@ struct ContentView: View {
         guard let outputImage = currentFilter.outputImage else { return }
         guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else { return }
         
-        let uiImage = UIImage(cgImage: cgImage)
+        let uiImage = UIImage(cgImage: cgImage, scale: inputUIImage.scale, orientation: inputUIImage.imageOrientation)
         processedImage = Image(uiImage: uiImage)
     }
     
