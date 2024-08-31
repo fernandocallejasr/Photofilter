@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		8426EE812C809A89003C8107 /* PhotofilterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426EE802C809A89003C8107 /* PhotofilterApp.swift */; };
 		8426EE832C809A89003C8107 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426EE822C809A89003C8107 /* ContentView.swift */; };
-		8426EE852C809A8C003C8107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8426EE842C809A8C003C8107 /* Assets.xcassets */; };
 		8426EE882C809A8C003C8107 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8426EE872C809A8C003C8107 /* Preview Assets.xcassets */; };
+		8426EE8F2C82D069003C8107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8426EE8E2C82D069003C8107 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8426EE7D2C809A89003C8107 /* Photofilter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Photofilter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8426EE802C809A89003C8107 /* PhotofilterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotofilterApp.swift; sourceTree = "<group>"; };
 		8426EE822C809A89003C8107 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		8426EE842C809A8C003C8107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8426EE872C809A8C003C8107 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8426EE8E2C82D069003C8107 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Photofilter/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +53,6 @@
 			children = (
 				8426EE802C809A89003C8107 /* PhotofilterApp.swift */,
 				8426EE822C809A89003C8107 /* ContentView.swift */,
-				8426EE842C809A8C003C8107 /* Assets.xcassets */,
 				8426EE862C809A8C003C8107 /* Preview Content */,
 			);
 			path = Photofilter;
@@ -63,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				8426EE872C809A8C003C8107 /* Preview Assets.xcassets */,
+				8426EE8E2C82D069003C8107 /* Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -125,8 +125,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8426EE8F2C82D069003C8107 /* Assets.xcassets in Resources */,
 				8426EE882C809A8C003C8107 /* Preview Assets.xcassets in Resources */,
-				8426EE852C809A8C003C8107 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
