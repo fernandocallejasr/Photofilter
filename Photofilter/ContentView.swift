@@ -7,9 +7,19 @@
 import CoreImage
 import CoreImage.CIFilterBuiltins
 import PhotosUI
+import StoreKit
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.requestReview) private var reviewRequest
+    
+    @State var filterCount: Int = UserDefaults.standard.integer(forKey: "filterCount") {
+        didSet {
+            print(filterCount)
+            Foundation.UserDefaults.standard.setValue(filterCount, forKey: "filterCount")
+        }
+    }
+    
     @State private var processedImage: Image?
     @State private var filterIntensity = 0.5
     @State private var photoPickerItem: PhotosPickerItem?
@@ -43,13 +53,14 @@ struct ContentView: View {
                 }
                 .padding(.vertical)
                 
-                HStack {
+                HStack(spacing: 40) {
                     Button("Change Filter", action: changeFilter)
                         .buttonStyle(.borderedProminent)
                     
-                    Spacer()
+                    if let processedImage {
+                        ShareLink(item: processedImage, preview: SharePreview("Photofilter Image", image: processedImage))
+                    }
                     
-                    // share the picture
                 }
                 .padding(.vertical)
                 
@@ -103,9 +114,15 @@ struct ContentView: View {
         showingFilters.toggle()
     }
     
-    func setFilter(_ filter: CIFilter) {
+    @MainActor func setFilter(_ filter: CIFilter) {
         currentFilter = filter
         loadImage()
+        
+        filterCount += 1
+        
+        if filterCount % 15 == 0 {
+            reviewRequest()
+        }
     }
 }
 
